@@ -9,7 +9,7 @@
         <relativePath/>
     </parent>
 
-    <groupId>org.lea</groupId>
+    <groupId>com.github.EstebanLescano</groupId>
     <artifactId>mmcommons</artifactId>
     <version>v1.0.2</version>
 
@@ -41,6 +41,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <version>1.18.32</version>
             <optional>true</optional>
         </dependency>
         <dependency>
