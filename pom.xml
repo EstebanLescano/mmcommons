@@ -9,9 +9,10 @@
         <relativePath/>
     </parent>
 
-    <groupId>org.lea</groupId>
+    <groupId>com.github.EstebanLescano</groupId>
     <artifactId>mmcommons</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>v1.0.0</version>
+
     <name>mmcommons</name>
     <description>mmcommons</description>
     <properties>
