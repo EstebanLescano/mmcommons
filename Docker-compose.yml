@@ -1,0 +1,45 @@
+version: "3.8"
+
+networks:
+  mm_net:
+
+volumes:
+  mmlocal_db_data:
+
+services:
+  postgres_mmlocal:
+    image: postgres:16.3-alpine
+    container_name: mm_local_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: MMpostgres
+      POSTGRES_PASSWORD: MMpassword
+    ports:
+      - "5435:5432"
+    volumes:
+      - mmlocal_db_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - mm_net
+
+
+  # Keycloak (modo desarrollo)
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.3.2
+    container_name: mm_keycloak
+    depends_on:
+      - postgres_mmlocal
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: admin
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://postgres_mmlocal:5432/MMKeycloak
+      KC_DB_USERNAME: MMpostgres
+      KC_DB_PASSWORD: MMpassword
+      KC_HOSTNAME_STRICT: "false"
+      KC_HTTP_ENABLED: "true"
+    command: [ "start-dev" ]
+    ports:
+      - "8080:8080"
+    networks:
+      - mm_net
