@@ -40,8 +40,8 @@ public class UserKeycloakService {
 
     public String login(String username, String password) {
         Keycloak keycloakUser = KeycloakBuilder.builder()
-                .serverUrl(keycloakAdmin.getServerUrl())
-                .realm(realm)
+//                .serverUrl(keycloakAdmin.getServerUrl())
+//                .realm(realm)
                 .clientId("app-console") // tu cliente donde quieres login
                 .username(username)
                 .password(password)
