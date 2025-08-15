@@ -12,46 +12,5 @@ import org.springframework.beans.factory.annotation.Value;
 @ConfigurationPropertiesScan
 public class KeycloakTokenRepository {
 
-    @Value("${keycloak.server.url}")
-    private String serverUrl;
 
-    @Value("${keycloak.realm}")
-    private String realm;
-
-    @Value("${keycloak.client.id}")
-    private String clientId;
-
-    @Value("${keycloak.client.secret}")
-    private String clientSecret;
-
-    @Value("${keycloak.master.realm}")
-    private String masterRealm;
-
-    @Value("${keycloak.master.client.id}")
-    private String masterClientId;
-
-    @Value("${keycloak.master.client.secret}")
-    private String masterClientSecret;
-
-    @Bean
-    public Keycloak keycloakAdminClient() {
-        return KeycloakBuilder.builder()
-                .serverUrl(serverUrl)
-                .realm(realm)
-                .clientId(clientId)
-                .clientSecret(clientSecret)
-                .grantType(OAuth2Constants.CLIENT_CREDENTIALS)
-                .build();
-    }
-
-    @Bean
-    public Keycloak keycloakMasterClient() {
-        return KeycloakBuilder.builder()
-                .serverUrl(serverUrl)
-                .realm(masterRealm)
-                .clientId(masterClientId)
-                .clientSecret(masterClientSecret)
-                .grantType(OAuth2Constants.CLIENT_CREDENTIALS)
-                .build();
-    }
 }
