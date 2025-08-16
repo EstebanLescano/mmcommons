@@ -11,7 +11,7 @@
 
     <groupId>com.github.EstebanLescano</groupId>
     <artifactId>mmcommons</artifactId>
-    <version>v1.0.6</version>
+    <version>v1.0.7</version>
 
     <name>mmcommons</name>
     <description>mmcommons</description>
@@ -61,6 +61,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-oauth2-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
