@@ -1,1 +1,2 @@
-org.lea.mmcommons.configurations.KeycloakConfiguration
+com.mimecanico.commons.config.OpenApiConfig
+

@@ -5,13 +5,17 @@ import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 import io.swagger.v3.oas.models.Components;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
+@AutoConfiguration
 public class OpenApiConfig {
 
     @Bean
+    @ConditionalOnMissingBean(OpenAPI.class)
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
