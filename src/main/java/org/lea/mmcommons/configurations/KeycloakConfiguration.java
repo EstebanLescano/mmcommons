@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ConfigurationPropertiesScan
 public class KeycloakConfiguration {
 
     @Value("${keycloak.server.url}")
@@ -33,7 +32,7 @@ public class KeycloakConfiguration {
     @Value("${keycloak.master.client.secret}")
     private String masterClientSecret;
 
-    @Bean
+    @Bean("keycloakAdminClient")
     public Keycloak keycloakAdminClient() {
         return KeycloakBuilder.builder()
                 .serverUrl(serverUrl)
@@ -44,7 +43,7 @@ public class KeycloakConfiguration {
                 .build();
     }
 
-    @Bean
+    @Bean("keycloakMasterClient")
     public Keycloak keycloakMasterClient() {
         return KeycloakBuilder.builder()
                 .serverUrl(serverUrl)
