@@ -11,7 +11,7 @@
 
     <groupId>com.github.EstebanLescano</groupId>
     <artifactId>mmcommons</artifactId>
-    <version>v1.1.4</version>
+    <version>v1.1.5</version>
 
     <name>mmcommons</name>
     <description>mmcommons</description>
@@ -30,6 +30,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
         </dependency>
 <!--        Esto permite que Spring Boot haga binding automático de propiedades-->
         <dependency>

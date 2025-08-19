@@ -3,58 +3,21 @@ package org.lea.mmcommons.configurations;
 import org.keycloak.OAuth2Constants;
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.KeycloakBuilder;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
+import org.lea.mmcommons.models.dtos.KeycloakProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class KeycloakConfiguration {
 
-    @Value("${keycloak.server.url}")
-    private String serverUrl;
-
-    @Value("${keycloak.realm}")
-    private String realm;
-
-    @Value("${keycloak.client.id}")
-    private String clientId;
-
-    @Value("${keycloak.client.secret}")
-    private String clientSecret;
-
-    @Value("${keycloak.master.realm}")
-    private String masterRealm;
-
-    @Value("${keycloak.master.client.id}")
-    private String masterClientId;
-
-    @Value("${keycloak.master.username}")
-    String adminUser;
-
-    @Value("${keycloak.master.password}")
-    String adminPassword;
-
-    @Bean("keycloakAdminClient")
-    public Keycloak keycloakAdminClient() {
+    @Bean
+    public Keycloak keycloakInstance(KeycloakProperties properties) {
         return KeycloakBuilder.builder()
-                .serverUrl(serverUrl)
-                .realm(realm)
-                .clientId(clientId)
-                .clientSecret(clientSecret)
+                .serverUrl(properties.getServerUrl())
+                .realm(properties.getRealm())
+                .clientId(properties.getClientId())
+                .clientSecret(properties.getClientSecret())
                 .grantType(OAuth2Constants.CLIENT_CREDENTIALS)
-                .build();
-    }
-
-    @Bean("keycloakMasterClient")
-    public Keycloak keycloakMasterClient(){
-        return KeycloakBuilder.builder()
-                .serverUrl(serverUrl)
-                .realm(masterRealm)
-                .username(adminUser)
-                .password(adminPassword)
-                .clientId(masterClientId)
-                .grantType(OAuth2Constants.PASSWORD)
                 .build();
     }
 }
