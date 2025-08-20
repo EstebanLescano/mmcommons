@@ -15,7 +15,9 @@ public class KeycloakTokenClient {
     private final WebClient webClient;
 
     public KeycloakTokenClient(WebClient.Builder webClientBuilder) {
-        this.webClient = webClientBuilder.baseUrl("http://localhost:8080").build();
+        this.webClient = webClientBuilder
+                .baseUrl("http://localhost:8080")
+                .build();
     }
 
     public String getAccessToken(String clientId, String realm, String username, String password) {
