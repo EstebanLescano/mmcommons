@@ -12,11 +12,29 @@ import org.springframework.context.annotation.Configuration;
 @EnableConfigurationProperties(KeycloakProperties.class)
 public class KeycloakConfiguration {
 
+    private final KeycloakProperties properties;
+
+    public KeycloakConfiguration(KeycloakProperties properties) {
+        this.properties = properties;
+    }
+
     @Bean
-    public Keycloak keycloakInstance(KeycloakProperties properties) {
+    public Keycloak keycloakAdmin() {
         return KeycloakBuilder.builder()
                 .serverUrl(properties.getServerUrl())
-                .realm(properties.getRealm())
+                .realm(properties.getMasterRealm())
+                .username(properties.getMasterUsername())
+                .password(properties.getMasterPassword())
+                .clientId(properties.getAdminClientId())
+                .grantType(OAuth2Constants.PASSWORD)
+                .build();
+    }
+
+    @Bean
+    public Keycloak keycloakClient() {
+        return KeycloakBuilder.builder()
+                .serverUrl(properties.getServerUrl())
+                .realm(properties.getClientRealm())
                 .clientId(properties.getClientId())
                 .clientSecret(properties.getClientSecret())
                 .grantType(OAuth2Constants.CLIENT_CREDENTIALS)
