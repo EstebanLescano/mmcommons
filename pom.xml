@@ -11,7 +11,7 @@
 
     <groupId>com.github.EstebanLescano</groupId>
     <artifactId>mmcommons</artifactId>
-    <version>v1.2.2</version>
+    <version>v1.2.3</version>
 
     <name>mmcommons</name>
     <description>mmcommons</description>
@@ -23,6 +23,16 @@
         <repository>
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
+        </repository>
+        <repository>
+            <id>spring-releases</id>
+            <name>Spring Releases</name>
+            <url>https://repo.spring.io/release</url>
+        </repository>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
         </repository>
     </repositories>
 
