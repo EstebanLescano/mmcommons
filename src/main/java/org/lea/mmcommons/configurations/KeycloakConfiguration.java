@@ -22,10 +22,10 @@ public class KeycloakConfiguration {
     public Keycloak keycloakAdmin() {
         return KeycloakBuilder.builder()
                 .serverUrl(properties.getServerUrl())
-                .realm(properties.getMasterRealm())
-                .username(properties.getMasterUsername())
-                .password(properties.getMasterPassword())
-                .clientId(properties.getAdminClientId())
+                .realm(properties.getAdmin().getRealm())
+                .username(properties.getAdmin().getUsername())
+                .password(properties.getAdmin().getPassword())
+                .clientId(properties.getAdmin().getClientId())
                 .grantType(OAuth2Constants.PASSWORD)
                 .build();
     }
@@ -34,9 +34,9 @@ public class KeycloakConfiguration {
     public Keycloak keycloakClient() {
         return KeycloakBuilder.builder()
                 .serverUrl(properties.getServerUrl())
-                .realm(properties.getClientRealm())
-                .clientId(properties.getClientId())
-                .clientSecret(properties.getClientSecret())
+                .realm(properties.getClient().getRealm())
+                .clientId(properties.getClient().getClientId())
+                .clientSecret(properties.getClient().getClientSecret())
                 .grantType(OAuth2Constants.CLIENT_CREDENTIALS)
                 .build();
     }

@@ -8,7 +8,6 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Mono;
 
 @Component
 public class KeycloakTokenClient {
@@ -21,21 +20,20 @@ public class KeycloakTokenClient {
                 .build();
     }
 
-    public String getAccessToken(String clientId, String realm, String username, String password) {
+    public String getClientCredentialsToken(String clientId, String clientSecret, String realm) {
         MultiValueMap<String, String> formData = new LinkedMultiValueMap<>();
-        formData.add("grant_type", "password");
+        formData.add("grant_type", "client_credentials");
         formData.add("client_id", clientId);
-        formData.add("username", username);
-        formData.add("password", password);
+        formData.add("client_secret", clientSecret);
 
-        Mono<Map> responseMono = webClient.post()
+        Map<String, Object> responseBody = webClient.post()
                 .uri("/realms/{realm}/protocol/openid-connect/token", realm)
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .body(BodyInserters.fromFormData(formData))
                 .retrieve()
-                .bodyToMono(Map.class);
+                .bodyToMono(Map.class)
+                .block();
 
-        Map<String, Object> responseBody = responseMono.block();
         return responseBody != null ? (String) responseBody.get("access_token") : null;
     }
 }
