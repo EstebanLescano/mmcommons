@@ -11,7 +11,7 @@
 
     <groupId>com.github.EstebanLescano</groupId>
     <artifactId>mmcommons</artifactId>
-    <version>v1.2.5</version>
+    <version>v1.2.6</version>
 
     <name>mmcommons</name>
     <description>mmcommons</description>
@@ -41,7 +41,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>2024.0.0</version>
+                <version>2025.0.0</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
