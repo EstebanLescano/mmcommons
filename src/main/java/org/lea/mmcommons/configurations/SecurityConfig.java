@@ -52,6 +52,7 @@ public class SecurityConfig {
 
     @Bean
     public JwtDecoder jwtDecoder() {
+        
         String issuerUri = properties.getServerUrl() + "/realms/" + properties.getClient().getRealm();
         return JwtDecoders.fromIssuerLocation(issuerUri);
     }
